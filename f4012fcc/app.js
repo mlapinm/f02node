@@ -1,4 +1,22 @@
-const sum = require("./file1");
+const EventEmitter = require('events');
 
-var k = sum(1,2)
-console.log(k)
+class Person extends EventEmitter{
+
+    constructor(name){
+        super()
+        this._name = name
+    }
+
+    get name(){
+        return this._name
+    }
+}
+
+let pedro = new Person('Pedro')
+pedro.on('name', ()=>{
+    console.log('my name is' + pedro.name)
+})
+
+pedro.emit('name')
+
+
