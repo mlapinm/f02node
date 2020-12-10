@@ -1,22 +1,15 @@
-const EventEmitter = require('events');
-
-class Person extends EventEmitter{
-
-    constructor(name){
-        super()
-        this._name = name
-    }
-
-    get name(){
-        return this._name
-    }
-}
-
-let pedro = new Person('Pedro')
-pedro.on('name', ()=>{
-    console.log('my name is' + pedro.name)
+const fs = require('fs')
+// create a file
+fs.writeFile('example.txt',"this is example", (err)=>{
+  if(err)
+    console.log(err);
+  else {
+    console.log('File successfully created');
+    fs.readFile('example.txt', 'utf8', (err,file)=>{
+      if(err)
+        console.log(err)
+      else
+        console.log(file)
+    })
+  }
 })
-
-pedro.emit('name')
-
-
